@@ -24,7 +24,7 @@ password="1234"
 
 const path = require('path');
 
-app.use(express.static('./dist/Frontend'));
+app.use(express.static('./dist/Front-end'));
 
 
 
@@ -188,7 +188,7 @@ function verifyToken(req,res,next){
 
 
 app.get('/*', function (req, res){
-    res.sendFile(path.join(_dirname + '/dist/Frontend/index.html'));
+    res.sendFile(path.join(_dirname + '/dist/Front-end/index.html'));
 });
 
 
