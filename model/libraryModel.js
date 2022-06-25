@@ -8,13 +8,6 @@ mongoose.connection.on('connected' ,()=>{
     console.log('connected to the mongoose database @ 27017')
 });
 
-mongoose.connection.on('error' ,()=>{
-    if(error)
-    {
-        console.log('Error in database connection:'+error)
-    }
-});
-
 const Schema = mongoose.Schema;
 
 var NewBookSchema = new Schema({
