@@ -8,12 +8,7 @@ mongoose.connection.on('connected' ,()=>{
     console.log('connected to the mongoose database @ 27017 for the userdata')
 });
 
-mongoose.connection.on('error' ,()=>{
-    if(err)
-    {
-        console.log('Error in database connection:'+err)
-    }
-});
+
 
 const Schema = mongoose.Schema;
 
