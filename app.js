@@ -8,9 +8,9 @@ const jwt = require('jsonwebtoken')
 
 const bodyparser = require('body-parser');
 
-var app = express();
+const app = express();
 
-const port = 3000;
+const PORT = process.env.PORT || 3000;
 
 
 app.use(cors());
@@ -24,9 +24,10 @@ password="1234"
 
 const path = require('path');
 
-app.use(express.static('./dist/Frontend'));
-
-
+app.use(express.static('dist/front-end'))
+app.get('/*', (req, res)=>{
+    res.sendFile(path.join(__dirname + '/dist/front-end/index.html'));
+});
 
 app.post('/api/login', (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
@@ -187,12 +188,10 @@ function verifyToken(req,res,next){
 }
 
 
-app.get('/*', function (req, res){
-    res.sendFile(path.join(_dirname + '/dist/Frontend/index.html'));
-});
 
 
-app.listen(process.env.PORT || 3000,() => {
-    console.log('server up in port 3000');
+
+app.listen(PORT, () => {
+    console.log('server up in port '+PORT);
 });
 

@@ -1,19 +1,19 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
 //connect to mongodb
-mongoose.connect('mongodb://localhost:27017/Library');
+mongoose.connect('mongodb://localhost:27017/Library')
 
 //on connection
 mongoose.connection.on('connected' ,()=>{
     console.log('connected to the mongoose database @ 27017')
-});
+})
 
-mongoose.connection.on('error' ,()=>{
-    if(err)
-    {
-        console.log('Error in database connection:'+err)
-    }
-});
+// mongoose.connection.on('error' ,()=>{
+//     if(error)
+//     {
+//         console.log('Error in database connection:'+error)
+//     }
+// });
 
 const Schema = mongoose.Schema;
 
