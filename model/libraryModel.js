@@ -9,9 +9,9 @@ mongoose.connection.on('connected' ,()=>{
 });
 
 mongoose.connection.on('error' ,()=>{
-    if(err)
+    if(error)
     {
-        console.log('Error in database connection:'+err)
+        console.log('Error in database connection:'+error)
     }
 });
 
