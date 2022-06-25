@@ -29,6 +29,8 @@ app.get('/*', (req, res)=>{
     res.sendFile(path.join(__dirname + '/dist/front-end/index.html'));
 });
 
+
+
 app.post('/api/login', (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Method:GET,POST,PUT,DELETE");
