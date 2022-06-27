@@ -1,33 +1,29 @@
 const express = require ('express');
 const cors = require('cors');
-
 const BookData = require('./model/libraryModel');
 const UserData = require('./model/userData');
+var app = express();
 
+const path = require('path');
+app.use(express.static(`./dist/front-end`));
+
+app.use(cors());
 const jwt = require('jsonwebtoken')
 
 const bodyparser = require('body-parser');
-
-const app = express();
-
-const PORT = process.env.PORT || 3000;
-
-
-app.use(cors());
-
-
 app.use(bodyparser.json());
 
-username="admin"
-password="1234"
+
+// const port = 3000;
 
 
-const path = require('path');
 
-app.use(express.static('dist/front-end'))
-app.get('/*', (req, res)=>{
-    res.sendFile(path.join(__dirname + '/dist/front-end/index.html'));
-});
+
+// username="admin"
+// password="1234"
+
+
+
 
 
 
@@ -58,6 +54,25 @@ app.post('/api/login', (req, res) => {
         }
     });
 });
+
+function verifyToken(req,res,next){
+    if(!req.headers.authorization){
+      return res.status(401).send('Unauthorized request');
+    }
+    let token = req.headers.authorization.split(' ')[1];
+    if(token=='null')
+    {
+      return res.status(401).send('Unauthorized request');
+    }
+    let payload = jwt.verify(token,'secretKey');
+    console.log(payload)
+    if(!payload){
+      return res.status(401).send('Unauthorized request');
+    }
+    req.userId = payload.subject
+    next()
+
+  }
 
 //         if(username !== userData.userName){
 //             res.status(401).send('invalid username')
@@ -166,34 +181,14 @@ res.send();
                             })
 })
 
-function verifyToken(req,res,next){
-    
-    if(!req.headers.authoraization)
-    {
-        return res.status(401).send('Unothorized request')
-    }
 
-    let token=req.headers.authoraization.split('')[1]
-    if (token=='null')
-    {
-        return res.status(401).send('Unothorized request')
-    }
+app.get('/*', function(req, res) {
 
-    let payload=jwt.verify(token,'secretkey')
-    console.log(payload)
-    if (!payload)
-    {
-        return res.status(401).res.send('Unothorized request')
-    }
-    req.userId=payload.subject
-    next()
-}
+    res.sendFile(path.join(__dirname + '/dist/front-end/index.html'));
+  });
 
+const PORT = process.env.PORT || 3000
 
-
-
-
-app.listen(PORT, () => {
-    console.log('server up in port '+PORT);
+app.listen(PORT,()=>{
+    console.log('server run at port:'+PORT);
 });
-

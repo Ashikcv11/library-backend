@@ -1,7 +1,11 @@
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
+const { default: mongoose } = require('mongoose');
+const Mongoose = require('mongoose');
+
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true });
 
 //connect to mongodb
-mongoose.connect('mongodb://localhost:27017/Library');
+// mongoose.connect('mongodb://localhost:27017/Library');
 
 //on connection
 mongoose.connection.on('connected' ,()=>{
