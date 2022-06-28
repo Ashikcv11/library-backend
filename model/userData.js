@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 
 const DB = "mongodb+srv://ashikcv:5s_xbvgUbwA33Av@cluster0.8ire35m.mongodb.net/?retryWrites=true&w=majority"
 // mongoose.connect(DB,{ useNewUrlParser: true, useUnifiedTopology: true}).then(()=>{
-    mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true }).then(()=>{
+    mongoose.connect(process.env.MONGODB_URL, { useNewUrlParser: true }).then(()=>{
         console.log("Database Connection Successful")
     }).catch((err)=>{
      console.log(err)
