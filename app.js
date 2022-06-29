@@ -19,8 +19,8 @@ app.use(bodyparser.json());
 
 
 
-username="admin"
-password="12345"
+username="admin@gmail.com"
+password="123456"
 
 
 
